@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#outer {
+			    width: 500px;
+			    margin: 0 auto;
+			    padding: 0;
+			    text-align: center;
+			}
+			#div1 {
+			    width: 100px;
+			    height: 100px;
+			    background: black;
+			    margin: 10px auto;
+			    display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<input type="button" value="变宽" id="b1">
+			<input type="button" value="变高" id="b2">
+			<input type="button" value="变色" id="b3">
+			<input type="button" value="隐藏" id="b4">
+			<input type="button" value="重置" id="b5">
+			<div id="div1"></div>
+		</div>
+		<script type="text/javascript">
+			function changeStyle(elem,attr,value){
+				elem.style[attr] = value;
+			}
+			var oAttr = ["width","height","background","display","display"];
+			var oVal = ["200px","300px","red","none","block"];
+			var oBtn = document.getElementsByTagName("input");
+			var oDiv = document.getElementById("div1");
+				for(var i=0;i<oBtn.length;i++){
+					oBtn[i].index = i;
+					oBtn[i].onclick = function(){
+						this.index == oBtn.length - 1 && (oDiv.style.cssText = "");
+						changeStyle(oDiv,oAttr[this.index],oVal[this.index]);
+						alert(this.index)
+				}
+			}
+		</script>
+	</body>
+</html>
