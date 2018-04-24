@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+       *{padding: 0;margin: 0;}
+       .timeBox{height: 30px;width: 300px;border-radius: 5px;background-color: #fb9e2f;position: absolute;left: 50%;top: 0;margin-left: -150px;font-size: 14px;color:#fff;line-height: 30px; overflow: hidden;}
+       .time-text{width: 80%;text-align: center;float: left;}
+       .time span{font-size: 16px;}
+    </style>
+</head>
+<body>
+    <!-- <div class="timeBox" id="timeBox">
+        <div class="time-text" id="timeText">操作成功</div> 
+        <p class="time" id="time"><span>3</span>s</p>
+    </div> -->
+    <a href="javascript:;" id="btn" onclick="tips(4,'asdasdasdasd')">按钮</a>
+    <script>
+        window.onload = function(){
+            // tips(timeText)
+            // var num = 3;
+            // var timer = null;
+            // var oButton = document.getElementById("btn");
+            // var timeBox = document.getElementById("timeBox");
+            // var oText = document.getElementById("timeText");
+            // var time = document.getElementById("time").getElementsByTagName("span")[0];
+            // btn.onclick = function(){
+            //     timer =  setInterval(function(){
+            //         num --;
+            //         time.innerHTML = num;
+            //         if(num == 0){
+            //             timeBox.style.display = "none";
+            //             clearInterval(timer);
+            //         }
+            //     },1000)
+                
+            // }
+        }
+        var gsetIntervalTimer = 0;
+        function tips(num,oText){
+            if(gsetIntervalTimer > 0){
+                clearInterval(gsetIntervalTimer);
+                gsetIntervalTimer = 0;
+            }
+            $("#timeBoxContent").remove();
+            var str =  '<div class="timeBox" id="timeBoxContent">' +
+                        '<div class="time-text" id="timeText">'+ oText +'</div>'+
+                        '<p class="time" id="timeContent"><span>'+ num +'</span>s</p></div>';
+            $("body").append(str);          
+            gsetIntervalTimer =  setInterval(function(){
+                num --;
+                $("#timeBoxContent span").html(num);
+                if(num <= 0){
+                    clearInterval(gsetIntervalTimer);
+                    gsetIntervalTimer =  0;
+                    $("#timeBoxContent").remove();
+                }
+            },1000);
+        }
+    </script>
+</body>
+</html>
