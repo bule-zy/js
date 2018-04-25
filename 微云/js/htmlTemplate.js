@@ -61,3 +61,8 @@ function treeHtml(data,treeId){
 	return html;
 }
 
+// 通过id定位到树形菜单添加class
+function positionById(positionId){
+	var ele = document.querySelector(".tree-title[data-file-id='"+positionId+"']");
+	tools.addClass(ele,"tree-nav");
+}
