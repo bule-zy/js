@@ -66,3 +66,25 @@ function positionById(positionId){
 	var ele = document.querySelector(".tree-title[data-file-id='"+positionId+"']");
 	tools.addClass(ele,"tree-nav");
 }
+
+function createPathNavHtml(datas,fileId){
+	
+	//找到指定id所有的父数据
+	var parents = dataControl.getParents(datas,fileId).reverse();
+	var pathNavHtml = "";
+	var len = parents.length;
+	parents.forEach(function(item,index){
+		if(index === parents.length-1) return;
+		pathNavHtml += `
+					<a href="javascript:;" style="z-index:${len--}" data-file-id="${item.id}">
+						${item.title}
+					</a>
+				`
+	});
+	pathNavHtml += `
+				<span class="current-path" style="z-index:${len--}" data-file-id="0">
+					${parents[parents.length-1].title}
+				</span>
+			`
+	return pathNavHtml;
+}
