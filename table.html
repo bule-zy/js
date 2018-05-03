@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+            .stable{
+	width: 100%;
+    border: 1px solid #e7e7e7;	
+}
+.stable th,
+.stable td{
+	padding:12px 5px;
+	font-weight: normal;
+    font-size: 14px;
+    border: 1px solid #e7e7e7;	
+}
+.stable td.wbg{
+	padding:0;
+}
+.stable td.wbg input{
+	height:45px;
+	padding-left:12px;
+	padding-right:12px;
+    color: #2b2b2b;
+    box-sizing:border-box;
+}
+input::-ms-clear{display: none;}
+.stableBoxbg{
+	background-color: #f4f6f9;
+}
+.stable td .targetTitle{
+	line-height:1.4;
+}
+.tInput{
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background-color: transparent;
+}
+.verticalTop td.wbg{
+    vertical-align: top;
+}
+.inputDiv{
+	position:relative;
+}
+.re .wbg{
+	position:relative;
+}
+.radioBox span,
+.checkBox span{
+	margin: 5px 10px;
+}
+.radioBox input[type="radio"],
+.checkBox input[type="checkbox"]{
+	vertical-align: -2px;
+}
+.checktext{
+	margin-top: 10px;
+}
+.checktext textarea{
+	min-height: 20px!important;
+	padding: 5px 10px;
+	overflow-y: auto;
+    font-size: 14px;
+    color: #555;
+    border: none;
+    background-color: #f4f5f6;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+}
+.sub-mach-list .stable td,
+.sub-mach-list .stable th{
+	padding: 12px 5px;
+}
+.sub-mach-list .ptableBox{
+	padding-left:0;
+	padding-right:0;
+}
+.sub-mach-list .stable td.wbg{
+	padding:0;
+}
+    </style>
+</head>
+<body>
+        <table border="0" cellspacing="0" cellpadding="0" class="stable" id="table">
+                <tr>
+                    <th width="25%">测评内容（问题）</th>
+                    <th width="5%">权重</th>
+                    <th width="10%">测评方式</th>
+                    <th width="28%">期望结果</th>
+                    <th width="5%">符合性评价</th>
+                </tr>
+                <tr id="tr1">
+                    <td>机房应采取区域隔离防火措施，将重要设备与其他设备隔离开<button class="red" data-toggle="modal" onclick="javascript:onDesele();return false;"><i class="iconfont icon-delete"></i>删除</button></td>
+                    <td rowspan="3" align="center">2</td>
+                    <td>访谈2</td>
+                    <td>期望结果</td>
+                    <td rowspan="3" class="wbg">	
+                        <select class="select-nbor" value="5">
+                            <option value="">请选择</option>
+                            <option value="5" selected="selected">符合（5）</option>
+                            <option value="4">部分符合（4）</option>
+                            <option value="3">部分符合（3）</option>
+                            <option value="2">部分符合（2）</option>
+                            <option value="1">部分符合（1）</option>
+                            <option value="0">不符合（0）</option>
+                            <option value="-1">不适用</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr data-id="2">
+                    <td>333机房应设置火灾自动消防系统，能够自动检测火情、自动报警，并自动灭火<button class="red" data-toggle="modal" onclick="javascript:onDesele();return false;"><i class="iconfont icon-delete"></i>删除</button></td>
+                    <td>访谈1</td>
+                    <td>期望结果</td>
+                </tr>
+            </table>
+            <script>
+                function onDesele(){
+                    var table = document.getElementById("table");
+                    var tds = table.getElementsByTagName("td");
+                    var trs = table.getElementsByTagName("tr");
+                    var arr = [];
+                    for(var iInd=0;iInd<tds.length;iInd++){
+                        if(tds[iInd].rowSpan && tds[iInd].rowSpan > 1){ 
+                            arr.push(tds[iInd]);    
+                            tds[iInd].parentNode.setAttribute("del","true");  
+                        }
+                    }
+                    $("#tr1").next().children().eq(1).before(arr[0]);
+                    $("#tr1").next().children().eq(3).after(arr[1]);
+                    for(var iInd=0;iInd<table.rows.length;iInd++){
+                        if(table.rows[iInd].getAttribute("del")){
+                            table.deleteRow(iInd);//删除标记行
+                            iInd -= 1;
+                        }
+                    }  
+                }
+            </script>
+</body>
+</html>
